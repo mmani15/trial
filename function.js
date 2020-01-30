@@ -20,3 +20,8 @@ function addTwo(number) {
   console.log(someVariable);
   const sentence = "ThIs HaS wEiRd CaSiNg On It";
 console.log(sentence.toUpperCase());
+
+console.log(Math.round(5.1));
+
+const name = "Brian Holt";
+console.log(name.substr(6, 3));
