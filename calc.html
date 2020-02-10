@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie0edge" />
+        <style>
+            .btn-num {
+                width: 60px;
+                height: 60px;
+                border: 1px solid grey;
+                border-radius: 10px;
+                padding: 10px;
+                margin: 7px 20px;
+                font-size: 18px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="firstNum">FirstNum -</div>
+        <div id="secondNum">SecondNum -</div>
+        <span>Result is - </span>
+        <span id="sum"></span>
+        <div>----------</div>
+        <div id="calculator">
+            <div>
+                <button id="1Btn" class="btn-num">1</button>
+                <button id="2Btn" class="btn-num">2</button>
+                <button id="3Btn" class="btn-num">3</button>
+            </div>
+            <div>
+                <button id="4Btn" class="btn-num">4</button>
+                <button id="5Btn" class="btn-num">5</button>
+                <button id="6Btn" class="btn-num">6</button>
+            </div>
+            <div>
+                <button id="7Btn" class="btn-num">7</button>
+                <button id="8Btn" class="btn-num">8</button>
+                <button id="9Btn" class="btn-num">9</button>
+            </div>
+            <div>
+                <button id="+OpsBtn" class="btn-num">+</button>
+                <button id="0Btn" class="btn-num">0</button>
+                <button id="=EqBtn" class="btn-num">=</button>
+            </div>
+            <div>
+                <button id="-OpsBtn" class="btn-num">-</button>
+                <button id="*OpsBtn" class="btn-num">*</button>
+                <button id="/OpsBtn" class="btn-num">/</button>
+            </div>
+            <div>
+                <button id="*CBtn" class="btn-num">C</button>
+            </div>
+        </div>
+
+        <div>----------</div>
+
+        <script>
+            var calc = document.querySelector('#calculator');
+            var firstNum = '';
+            var secondNum = '';
+            var operationSelected = false;
+            var operation = '';
+            calc.addEventListener('click', function(event) {
+                // console.log(event);
+                // console.log(firstNum);
+                if (event.target.id.includes('Btn')) {
+                    // console.log(firstNum);
+                    if (event.target.id.includes('Ops') && firstNum !== '') {
+                        operationSelected = true;
+                        operation = event.target.innerText;
+                    }
+                    if (
+                        operationSelected &&
+                        !event.target.id.includes('Ops') &&
+                        !event.target.id.includes('Eq')
+                    ) {
+                        secondNum = secondNum + event.target.innerText;
+                        var secNum = document.getElementById('secondNum');
+                        secNum.textContent = 'second num - ' + secondNum;
+                    }
+                    if (
+                        !operationSelected &&
+                        !event.target.id.includes('Ops') &&
+                        !event.target.id.includes('Eq')
+                    ) {
+                        firstNum = firstNum + event.target.innerText;
+                        var firsNum = document.getElementById('firstNum');
+                        firsNum.textContent = 'first num - ' + firstNum;
+                    }
+                    if (
+                        event.target.id.includes('Eq') &&
+                        firstNum &&
+                        secondNum &&
+                        operation
+                    ) {
+                        var firstNumber = parseInt(firstNum, 10);
+                        var secondNumber = parseInt(secondNum, 10);
+                        var result;
+                        switch (operation) {
+                            case '+':
+                                result = firstNumber + secondNumber;
+                                break;
+                            case '-':
+                                result = firstNumber - secondNumber;
+                                break;
+                            case '*':
+                                result = firstNumber * secondNumber;
+                                break;
+                            case '/':
+                                result = firstNumber / secondNumber;
+                                break;
+                        }
+                        var sumSpan = document.getElementById('sum');
+                        sumSpan.innerText = result;
+                    }
+                    if (event.target.id.includes('CBtn')) {
+                        var sumSpan = document.getElementById('sum');
+                        sumSpan.innerText = '';
+                        var firsNum = document.getElementById('firstNum');
+                        firsNum.textContent = 'first num - ';
+                        var secNum = document.getElementById('secondNum');
+                        secNum.textContent = 'second num - ';
+                        firstNum = '';
+                        secondNum = '';
+                        operation = '';
+                        operationSelected = false;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

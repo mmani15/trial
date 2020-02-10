@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie0edge" />
+    </head>
+    <body>
+        <span>Sum is - </span>
+        <span id="sum"></span>
+        <div>----------</div>
+        <input type="number" id="text1" />
+        <input type="number" id="text2" />
+        <button id="calcSum">Calculate</button>
+        <script>
+            function summmy(a, b) {
+                var c = a + b;
+                return c;
+            }
+            var btn = document.getElementById('calcSum');
+            btn.addEventListener('click', function() {
+                var text1 = document.getElementById('text1');
+                var text2 = document.getElementById('text2');
+                var val1 = parseInt(text1.value, 10);
+                var val2 = parseInt(text2.value, 10);
+                var sum = summmy(val1, val2);
+                var sumText = document.getElementById('sum');
+                sumText.textContent = sum;
+            });
+        </script>
+    </body>
+</html>
+
+
